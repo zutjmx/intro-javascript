@@ -1,3 +1,5 @@
+import { faker } from "@faker-js/faker/locale/es_MX";
+
 var nombre = 'Jesús'; //Forma antigua de declarar variables, ya no se usa.
 let aPaterno = 'Zúñiga'; //Forma nueva de declarar variables.
 let aMaterno = 'Trejo'; //Forma nueva de declarar variables.
@@ -5,6 +7,10 @@ let aMaterno = 'Trejo'; //Forma nueva de declarar variables.
 const pi = 3.1416; //Forma de declarar constantes.
 
 const valorBooleano = true;
+
+//Uso de faker para JS
+const nombreAleatorio = faker.person.fullName();
+const emailAletorio = faker.internet.email();
 
 console.log('Iniciando introducción a JavaScript.');
 console.log('Valor de variable nombre: ', nombre);
@@ -17,3 +23,6 @@ console.log(`Concatenando valores con plantilla: nombre completo [${nombre} ${aP
 if(valorBooleano) {
     console.log(`Valor de valorBooleano: ${valorBooleano}`)
 }
+
+console.log(`Valor de nombreAleatorio: ${nombreAleatorio}`);
+console.log(`Valor de emailAletorio: ${emailAletorio}`);
