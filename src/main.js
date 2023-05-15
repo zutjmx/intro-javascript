@@ -10,7 +10,11 @@ const valorBooleano = true;
 
 //Uso de faker para JS
 const nombreAleatorio = faker.person.fullName();
-const emailAletorio = faker.internet.email();
+const emailAleatorio = faker.internet.email();
+
+const lineaArea = faker.airline.airline().name;
+const numeroDeVuelo = faker.airline.flightNumber();
+const numeroDeAsiento = faker.airline.seat();
 
 console.log('Iniciando introducción a JavaScript.');
 console.log('Valor de variable nombre: ', nombre);
@@ -25,4 +29,9 @@ if(valorBooleano) {
 }
 
 console.log(`Valor de nombreAleatorio: ${nombreAleatorio}`);
-console.log(`Valor de emailAletorio: ${emailAletorio}`);
+console.log(`Valor de emailAleatorio: ${emailAleatorio}`);
+
+//Mas template string
+console.log(`Línea área: ${lineaArea}
+            Número de vuelo: ${numeroDeVuelo}
+            Asiento: ${numeroDeAsiento}`);
