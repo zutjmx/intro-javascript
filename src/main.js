@@ -1,40 +1,34 @@
+//Clases y Objetos.
 import { faker } from "@faker-js/faker/locale/es_MX";
 
-//Forma tradicional de definir una función, ya casi no se usa.
-function funcionSuma(a, b) {
-    return a+b;
+//Declaración de clase, según una búsqueda en Google
+class Persona {
+    constructor(primerNombre,aPaterno,aMaterno,fechaNacimiento) {
+        this.primerNombre = primerNombre;
+        this.aPaterno = aPaterno;
+        this.aMaterno = aMaterno;
+        this.fechaNacimiento = fechaNacimiento;
+    }
 }
 
-//Forma función anónima.
-const numeroAleatorio = function(minimo, maximo) {
-    return faker.number.float({min: minimo, max: maximo});
+const persona = new Persona(faker.person.firstName(), 
+                            faker.person.lastName(), 
+                            faker.person.middleName(), 
+                            faker.date.birthdate({min:1930,max:1990}));
+
+console.log('Persona:', persona);
+
+//Objeto según el curso
+const factura = {
+    id: faker.number.int({min:1,max:1000}),
+    fecha: faker.date.anytime(),
+    nombre: faker.lorem.paragraph(),
+    cliente: faker.person.fullName(),
+    direccion: faker.location.streetAddress(),
+    email: faker.internet.email(),
+    total: faker.number.int(2000),
 }
 
-//Función de flecha, forma más usada.
-const funcionHola = (nombre = 'Jesús', apellidoPaterno = 'Zúñiga', apellidoMaterno = 'Trejo', edad = 0) => {
-    return `Hola ${nombre} ${apellidoPaterno} ${apellidoMaterno}, edad: ${edad}`;
-}
-
-const fib = (n) => {
-    if (n <= 1) return n;
-    return fib(n-1) + fib(n-2);
-}
-
-const primerNombre = faker.person.firstName();
-const paterno = faker.person.lastName();
-const materno = faker.person.middleName();
-const edad = faker.number.int({min:18,max:90});
-const resultadoHola = funcionHola(primerNombre,paterno,materno,edad);
-
-const primerSumando = faker.number.int();
-const segundoSumando = faker.number.int();
-
-const enteroAletorio = faker.number.int({min:1,max:10});
-
-console.log(`Resultado de funcionHola(): ${resultadoHola}`);
-
-console.log(`Resultado de ${primerSumando} + ${segundoSumando} = ${funcionSuma(primerSumando,segundoSumando)}`);
-
-console.log(`Generar número real aleatorio entre 0 y 100: ${numeroAleatorio(0,100)}`);
-
-console.log(`Número de Fibonacci de ${enteroAletorio} = ${fib(enteroAletorio)}`);
+console.log('Se imprime la factura: ',factura);
+console.log('Se imprime nombre de la factura: ',factura.nombre);
+console.log('Se imprime cliente de la factura: ',factura.cliente);
