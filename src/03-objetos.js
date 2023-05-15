@@ -48,22 +48,10 @@ const factura = {
     }
 }
 
-//Se crea nuevafactura a partir de factura.
-//const nuevafactura = factura;
-
-//Se crea nuevafactura a partir de factura usando operador Spread.
-const nuevafactura = {...factura};
-
-console.log('factura: ',factura);
-console.log('nuevafactura: ',nuevafactura);
-
-const comparacionfacturas = factura === nuevafactura;
-if(comparacionfacturas) {
-    console.log('comparacionfacturas (factura === nuevafactura): ',comparacionfacturas);
-} else {
-    console.log('No son iguales factura y nuevafactura');
-}
-
-nuevafactura.id = 10000;
-console.log('factura: ',factura);
-console.log('nuevafactura: ',nuevafactura);
+//Se imprime objeto y algunas propiedades y métodos
+console.log('Se imprime la factura: ',factura);
+console.log('Se imprime descripcion de la factura: ',factura.descripcion);
+console.log('Se imprime cliente de la factura: ',factura.cliente);
+console.log('Se imprime items de la factura: ',factura.items);
+console.log('Se imprime descripcion de la factura por medio del método obtenDescripcion: ',factura.obtenDescripcion());
+console.log('Se imprime total de la factura por medio del método total: ',factura.total());
