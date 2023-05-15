@@ -1,34 +1,53 @@
 //Clases y Objetos.
 import { faker } from "@faker-js/faker/locale/es_MX";
 
-//Declaración de clase, según una búsqueda en Google
-class Persona {
-    constructor(primerNombre,aPaterno,aMaterno,fechaNacimiento) {
-        this.primerNombre = primerNombre;
-        this.aPaterno = aPaterno;
-        this.aMaterno = aMaterno;
-        this.fechaNacimiento = fechaNacimiento;
-    }
-}
+//Datos para persona.
+const idCliente = faker.number.int({min:1,max:1000});
+const nombreCliente = faker.person.firstName();
+const apellidoPaterno = faker.person.lastName();
+const apellidoMaterno = faker.person.middleName();
+const fechaNacimientoCliente = faker.date.birthdate({min:18,max:80,mode:'age'});
 
-const persona = new Persona(faker.person.firstName(), 
-                            faker.person.lastName(), 
-                            faker.person.middleName(), 
-                            faker.date.birthdate({min:1930,max:1990}));
-
-console.log('Persona:', persona);
-
-//Objeto según el curso
+//Declaración y construcción de un objeto.
 const factura = {
     id: faker.number.int({min:1,max:1000}),
     fecha: faker.date.anytime(),
-    nombre: faker.lorem.paragraph(),
-    cliente: faker.person.fullName(),
+    descripcion: faker.lorem.paragraph(1),
+    cliente: {
+        id: idCliente,
+        nombre: nombreCliente,
+        aPaterno: apellidoPaterno,
+        aMaterno: apellidoMaterno,
+        fechaNacimiento: fechaNacimientoCliente,
+    },
+    items: [
+        {
+            id: 1,
+            descripcion: 'laptop Asus VivoBook',
+            cantidad: 1,
+            precio: 1900,
+        },
+        {
+            id: 2,
+            descripcion: 'Huawei Nova Y90',
+            cantidad: 1,
+            precio: 4500,
+        }
+    ],
     direccion: faker.location.streetAddress(),
     email: faker.internet.email(),
     total: faker.number.int(2000),
+    obtenDescripcion: function() {
+        return `::${this.descripcion}::`;
+    },
+    obtenTotal: () => {
+        return `::${factura.total}::`;
+    }
 }
 
 console.log('Se imprime la factura: ',factura);
-console.log('Se imprime nombre de la factura: ',factura.nombre);
+console.log('Se imprime descripcion de la factura: ',factura.descripcion);
 console.log('Se imprime cliente de la factura: ',factura.cliente);
+console.log('Se imprime items de la factura: ',factura.items);
+console.log('Se imprime descripcion de la factura por medio del método obtenDescripcion: ',factura.obtenDescripcion());
+console.log('Se imprime total de la factura por medio del método obtenTotal: ',factura.obtenTotal());
