@@ -1,37 +1,25 @@
 import { faker } from "@faker-js/faker/locale/es_MX";
 
-var nombre = 'Jesús'; //Forma antigua de declarar variables, ya no se usa.
-let aPaterno = 'Zúñiga'; //Forma nueva de declarar variables.
-let aMaterno = 'Trejo'; //Forma nueva de declarar variables.
-
-const pi = 3.1416; //Forma de declarar constantes.
-
-const valorBooleano = true;
-
-//Uso de faker para JS
-const nombreAleatorio = faker.person.fullName();
-const emailAleatorio = faker.internet.email();
-
-const lineaArea = faker.airline.airline().name;
-const numeroDeVuelo = faker.airline.flightNumber();
-const numeroDeAsiento = faker.airline.seat();
-
-console.log('Iniciando introducción a JavaScript.');
-console.log('Valor de variable nombre: ', nombre);
-console.log('Valor de variable apellido paterno: ', aPaterno);
-console.log('Valor de variable apellido materno: ', aMaterno);
-console.log('Valor de PI: ', pi);
-//Concatenación de cadenas usando una plantilla, interpolación de cadenas, con el caracter 'backtick' o acento fuerte '`'
-console.log(`Concatenando valores con plantilla: nombre completo [${nombre} ${aPaterno} ${aMaterno}], valor de PI: [${pi}] `);
-
-if(valorBooleano) {
-    console.log(`Valor de valorBooleano: ${valorBooleano}`)
+//Forma tradicional de definir una función, ya casi no se usa.
+function funcionSuma(a, b) {
+    return a+b;
 }
 
-console.log(`Valor de nombreAleatorio: ${nombreAleatorio}`);
-console.log(`Valor de emailAleatorio: ${emailAleatorio}`);
+//Función de flecha, forma más usada.
+const funcionHola = (nombre = 'Jesús', apellidoPaterno = 'Zúñiga', apellidoMaterno = 'Trejo', edad = 0) => {
+    const saludo = `Hola ${nombre} ${apellidoPaterno} ${apellidoMaterno}, edad: ${edad}`;
+    return saludo;
+}
 
-//Mas template string
-console.log(`Línea área: ${lineaArea}
-            Número de vuelo: ${numeroDeVuelo}
-            Asiento: ${numeroDeAsiento}`);
+const primerNombre = faker.person.firstName();
+const paterno = faker.person.lastName();
+const materno = faker.person.middleName();
+const edad = faker.number.int({min:18,max:90});
+const resultadoHola = funcionHola(primerNombre,paterno,materno,edad);
+
+const primerSumando = faker.number.int();
+const segundoSumando = faker.number.int();
+
+console.log(`Resultado de funcionHola(): ${resultadoHola}`);
+
+console.log(`Resultado de ${primerSumando} + ${segundoSumando} = ${funcionSuma(primerSumando,segundoSumando)}`);
