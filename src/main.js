@@ -67,3 +67,6 @@ if(comparacionfacturas) {
 nuevafactura.id = 10000;
 console.log('factura: ',factura);
 console.log('nuevafactura: ',nuevafactura);
+
+console.log('Id de factura: ',factura.id);
+console.log('Id de nuevafactura: ',nuevafactura.id);
