@@ -1,22 +1,5 @@
-//Faker para simular datos
+//Clases y Objetos.
 import { faker } from "@faker-js/faker/locale/es_MX";
-
-//Datos para el objeto dirección.
-const calle = faker.location.street();
-const numeroCalle = faker.location.buildingNumber().trim();
-const ciudad = faker.location.city();
-const cp = faker.location.zipCode();
-const entidadFederativa = faker.location.state();
-const pais = faker.location.country();
-const objetoDireccion = {
-    id: faker.number.int({min:1,max:1000}),
-    calle,
-    numeroCalle,
-    ciudad,
-    cp,
-    entidadFederativa,
-    pais,
-}
 
 //Datos para el objeto cliente.
 const idCliente = faker.number.int({min:1,max:1000});
@@ -30,7 +13,6 @@ const objetoCliente = {
     aPaterno: apellidoPaterno,
     aMaterno: apellidoMaterno,
     fechaNacimiento: fechaNacimientoCliente,
-    direccion: objetoDireccion
 }
 
 //Se crea un arreglo de objetos para la propiedad items
@@ -52,6 +34,7 @@ const factura = {
     descripcion: faker.lorem.paragraph(1),
     cliente: objetoCliente,
     items: itemArray,
+    direccion: faker.location.streetAddress(),
     email: faker.internet.email(),
     obtenDescripcion: function() {
         return `::${this.descripcion}::`;
@@ -65,25 +48,25 @@ const factura = {
     }
 }
 
-console.log('Se imprime factura: ', factura);
+//Se crea nuevafactura a partir de factura.
+//const nuevafactura = factura;
 
-//Para verificar que existe propiedad compania.nombre
-console.log('Compañía de factura: ', factura.compania?.nombre);
-//Así se evaluaba antes.
-/* if (factura.compania != undefined && factura.compania.nombre) {
-    console.log('Compañía de factura: ', factura.compania.nombre);
+//Se crea nuevafactura a partir de factura usando operador Spread.
+const nuevafactura = {...factura};
+
+console.log('factura: ',factura);
+console.log('nuevafactura: ',nuevafactura);
+
+const comparacionfacturas = factura === nuevafactura;
+if(comparacionfacturas) {
+    console.log('comparacionfacturas (factura === nuevafactura): ',comparacionfacturas);
 } else {
-    console.log('la factura no tiene Compañía');
-} */
-//Así es más práctico.
-if (factura.compania?.nombre) {
-    console.log('Compañía de factura: ', factura.compania.nombre);
-} else {
-    console.log('la factura no tiene Compañía');
+    console.log('No son iguales factura y nuevafactura');
 }
 
-console.log('Cliente de factura: ', factura.cliente?.nombre);
+nuevafactura.id = 10000;
+console.log('factura: ',factura);
+console.log('nuevafactura: ',nuevafactura);
 
-console.log('Dirección del cliente de factura: ', factura.cliente?.direccion);
-
-console.log('Calle de la dirección del cliente de factura: ', factura.cliente?.direccion?.calle);
+console.log('Id de factura: ',factura.id);
+console.log('Id de nuevafactura: ',nuevafactura.id);
