@@ -1,32 +1,74 @@
 //Faker para simular datos
 import { faker } from "@faker-js/faker/locale/es_MX";
 
-//Datos para objeto compañía
-const compania = {
-    id: faker.database.mongodbObjectId(),
-    nombre: faker.company.name(),
-    frase: faker.company.buzzPhrase(),
+//Arreglos
+//Se genera un arreglo de números
+let arregloNumeros = [];
+for (let index = 0; index < 10; index++) {
+    const element = faker.number.int({min:1,max:200});
+    arregloNumeros.push(element);
 }
 
-//Operador ternario
-console.log('Compañía: ',compania);
+//Se genera un arreglo de productos
+let arregloProductos = [];
+for (let index = 0; index < 10; index++) {
+    const producto = faker.commerce.product();
+    arregloProductos.push(producto);
+}
 
-const promedio = faker.number.float({min:1,max:10,precision:0.01});
-const estatus = (promedio > 5.9) ? 'Aprobado' : 'Rechazado';
+//Se genera un arreglo de emial's
+let arregloEmails = [];
+for (let index = 0; index < 10; index++) {
+    const email = faker.internet.email();
+    arregloEmails.push(email);
+}
 
-console.log('Promedio: ',promedio);
-console.log('Estatus: ',estatus);
+//Se genera un arreglo de personas
+let arregloPersonas = [];
+for (let index = 0; index < 10; index++) {
+    const persona = faker.person.fullName();
+    arregloPersonas.push(persona);
+}
 
-let maximo = faker.number.int({max:100});
+// console.log('Contenido de arregloNumeros: ', arregloNumeros);
+// console.log('Contenido de arregloProductos: ', arregloProductos);
+// console.log('Contenido de arregloEmails: ', arregloEmails);
 
-const a = faker.number.int({min:1,max:100});
-const b = faker.number.int({min:1,max:100});
-const c = faker.number.int({min:1,max:100});
+console.log('Contenido del índice [3] de arregloEmails: ', arregloEmails[3]);
+console.log('Contenido de arregloProductos.toString(): ', arregloProductos.toString());
+console.log('Contenido de arregloProductos.join(): ', arregloProductos.join('|'));
 
-maximo = a > b ? a : b;
-maximo = maximo > c ? maximo : c;
+//Usando forEach con función de flecha.
+console.log('Contenido de arregloEmails Usando forEach:');
+arregloEmails.forEach(email => {
+    console.log(email);
+});
 
-console.log(`A = ${a}`);
-console.log(`B = ${b}`);
-console.log(`C = ${c}`);
-console.log(`Máximo de {A,B,C} = ${maximo}`);
+//Usando forEach con función anónima.
+console.log('Contenido de arregloProductos Usando forEach:');
+arregloProductos.forEach(function(elemento) {
+    console.log(elemento);
+});
+
+//Usando for of
+console.log('Contenido de arregloNumeros usando For-Of:');
+for (const numero of arregloNumeros) {
+    console.log(`número: ${numero}`);
+}
+
+//Usando for clásico
+console.log('Contenido de arregloPersonas usando for clásico:');
+for (let index = 0; index < arregloPersonas.length; index++) {
+    const persona = arregloPersonas[index];
+    console.log(persona);
+}
+
+//Crear arreglo con split()
+const cadena = faker.lorem.words();
+const palabras = cadena.split(' ');
+console.log('Cadena: ', cadena);
+let indice = 0;
+palabras.forEach(palabra => {    
+    console.log(`Palabra[${indice}] ${palabra}`);
+    indice++;
+});
