@@ -43,6 +43,21 @@ const generaItems = () => {
     return itemArray;
 }
 
+//Función para generar objeto Dirección
+const generaDireccion = () => {
+    const objetoDireccion = {
+        id: faker.number.int({min:1, max:100}),
+        calle: faker.location.street(),
+        numero: faker.number.int({min:1,max:1000}).toString(),
+        colonia: faker.location.county(),
+        ciudad: faker.location.city(),
+        estado: faker.location.state(),
+        cp: faker.location.zipCode(),
+        pais: faker.location.country(),
+    };
+    return objetoDireccion;
+}
+
 //Función para generar cadenas para la propiedad descripción.
 const generaDescripcion = () => {
     return faker.company.catchPhrase();
@@ -56,7 +71,7 @@ const facturas = [
         descripcion: generaDescripcion(),
         cliente: generaCliente(),
         items: generaItems(),
-        direccion: faker.location.streetAddress(),
+        direccion: generaDireccion(),
         email: faker.internet.email()
     },
     {
@@ -65,7 +80,7 @@ const facturas = [
         descripcion: generaDescripcion(),
         cliente: generaCliente(),
         items: generaItems(),
-        direccion: faker.location.streetAddress(),
+        direccion: generaDireccion(),
         email: faker.internet.email()
     },
     {
@@ -74,7 +89,7 @@ const facturas = [
         descripcion: generaDescripcion(),
         cliente: generaCliente(),
         items: generaItems(),
-        direccion: faker.location.streetAddress(),
+        direccion: generaDireccion(),
         email: faker.internet.email()
     },
     {
@@ -83,7 +98,7 @@ const facturas = [
         descripcion: generaDescripcion(),
         cliente: generaCliente(),
         items: generaItems(),
-        direccion: faker.location.streetAddress(),
+        direccion: generaDireccion(),
         email: faker.internet.email()
     }
 ];
@@ -101,3 +116,19 @@ const nombresClientesfacturas = facturas.map(factura => {
 });
 
 console.log('Solo nombres de clientes de las facturas: ', nombresClientesfacturas);
+
+//Uso del método find
+const facturaConIdMayorA10MenorA100 = facturas.find(factura => (factura.id > 10 && factura.id < 100));
+console.log(facturaConIdMayorA10MenorA100? facturaConIdMayorA10MenorA100 : 'No se encontró factura con Id > 10 y < 100');
+
+const coincideNombre = facturas.find(factura => factura.cliente.nombre === 'Juan');
+console.log(coincideNombre? coincideNombre : 'No se encontró factura cuyo nombre de cliente sea Juan');
+
+//Uso del método filter
+const facturasConIdMayorA200 = facturas.filter(factura => factura.id > 200);
+console.log('Facturas con Id mayor a 200: ',facturasConIdMayorA200);
+
+//Uso del método some
+const resultadoSome = facturas.some(factura => factura.cliente.nombre === 'Ana');
+console.log('Hay al menos una factura que tiene un cliente con nombre Ana',resultadoSome);
+
