@@ -98,8 +98,69 @@ const facturas = [
     }
 ];
 
+const segundoArregloFacturas = [
+    {
+        id: 1,
+        fecha: faker.date.anytime(),
+        descripcion: generaDescripcion(),
+        cliente: generaCliente(),
+        items: generaItems(),
+        direccion: generaDireccion(),
+        email: faker.internet.email()
+    },
+    {
+        id: 2,
+        fecha: faker.date.anytime(),
+        descripcion: generaDescripcion(),
+        cliente: generaCliente(),
+        items: generaItems(),
+        direccion: generaDireccion(),
+        email: faker.internet.email()
+    },
+    {
+        id: 3,
+        fecha: faker.date.anytime(),
+        descripcion: generaDescripcion(),
+        cliente: generaCliente(),
+        items: generaItems(),
+        direccion: generaDireccion(),
+        email: faker.internet.email()
+    },
+    {
+        id: 4,
+        fecha: faker.date.anytime(),
+        descripcion: generaDescripcion(),
+        cliente: generaCliente(),
+        items: generaItems(),
+        direccion: generaDireccion(),
+        email: faker.internet.email()
+    }
+];
+
+const buscaFacturaPorId = (id) => {
+    return segundoArregloFacturas.find(factura => factura.id === id);
+}
+
+
+//Se ejecuta la promesa dentro de una función.
+const findInvoiceById = (id) => {
+    const promesa = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const resultado = buscaFacturaPorId(id);
+            if(resultado) {
+                resolve(resultado);
+            } else {
+                reject(`No se encontró la factura con Id: ${id}`);
+            }
+        }, 2500);
+    });
+    return promesa;
+}
+
 export {
     generaEnteros,
-    generaCliente, 
+    generaCliente,
+    buscaFacturaPorId,
+    findInvoiceById, 
     facturas, 
 }
